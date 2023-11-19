@@ -20,26 +20,47 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
             position: fixed;
             bottom: 10px;
             left: 10px;
-            background-color: #fff;
-            padding: 6px;
+            /* background-color: #fff; */
+            /* padding: 6px 8px; */
             border-radius: 3px;
-            border: 1px solid gray;
+            /* border: 1px solid rgb(189, 189, 189); */
             color: #4e5b5b;
+        }
+        #key button, #key #places {
+            color: #000;
+            background-color: #f0f0f0;
+            border: 1px solid rgb(185, 185, 185);
+            border-radius: 4px;
+            padding: 3px 6px;
+            cursor: pointer;
+        }
+        #key #places {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            gap: 4px;
+            padding: 3px 6px;
+        }
+        #key #places input {
+            margin: 0;
+        }
+        #key button:hover {
+            background-color: #e8e8e8e4;
         }
         [id^="category"] {
             transition: opacity 0.5s ease;
         }
         #about {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 10px;
+            left: 10px;
             max-width: 369px;
             text-align: center;
-            margin: 15px;
             background-color: #fff;
             padding: 12px;
             border-radius: 3px;
@@ -84,22 +105,36 @@
         button#close:hover {
             background-color: #ededed;
         }
+        #submissions {
+            text-align: left;
+        }
+        #submissions form {
+            display: flex;
+            flex-flow: column nowrap;
+            gap: 10px;
+        }
+        #submissions form textarea {
+            resize: vertical;
+            min-height: 50px;
+        }
+        #submissions form input[type="submit"] {
+            color: #000;
+            width: max-content;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <div id="key">
-        <div class="control">
+        <div class="control" id="places">
             <input type="checkbox" id="toggle-labels" checked>
             <label for="labels">places</label>
         </div>
         <div class="control">
-            <button id="randomButton">✜ random site</button>
+            <button id="randomButton">random</button>
         </div>
         <div class="control">
-            <button>+ submit a site</button>
-        </div>
-        <div class="control">
-            <button id="about-toggle">?</button>
+            <button id="about-toggle">info & submit</button>
         </div>
         <!-- <hr>
         <div class="category">
@@ -263,6 +298,18 @@
         <h3>diagram.website</h3>
 
         <p>A project by Kristoffer Tjalve with help from Elliott Cost.<br>Made in Athens, November 2023.</p>
+
+        <hr>
+
+        <div id="submissions">
+            <p>Submit a site</p>
+    
+            <form id="submission-form">
+                <input type="text" placeholder="http://" type="url" id="url" name="url" required>
+                <textarea placeholder="a little bit about your submission" id="description" name="description"></textarea>
+                <input type="submit" value="submit">
+            </form>
+        </div>
     </div>    
         
     <script src="script.js"></script>     

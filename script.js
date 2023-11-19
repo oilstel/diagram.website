@@ -78,6 +78,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+document.getElementById('submission-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+    const formObject = {};
+    formData.forEach((value, key) => { formObject[key] = value; });
+
+    var submissionForm = document.getElementById('submission-form');
+
+    fetch('https://script.google.com/macros/s/AKfycbwYOsOTeBeNwr6ny1dA2Ch3bCVnC6JAg0CeW4ZMuRjERbk90uIsIvvRZCl7_XrS6bAN/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(formObject).toString()
+    }).then(response => {
+        console.log('Form submitted');
+        submissionForm.innerHTML = `<p>Thank you for your submission.</p>`
+        // Handle success
+    }).catch(error => {
+        console.error('Error submitting form', error);
+        // Handle error
+    });
+});
+
+
+
+
 
 
 

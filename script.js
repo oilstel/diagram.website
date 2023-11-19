@@ -51,6 +51,32 @@ document.getElementById('randomButton').addEventListener('click', function() {
     window.location.href = href;
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    var about = document.getElementById('about');
+    var toggleButton = document.querySelector('#key button#about-toggle');
+    var closeButton = document.getElementById('close');
+
+    // Function to check if the element is currently visible
+    function isElementVisible(element) {
+        return window.getComputedStyle(element).display !== 'none';
+    }
+
+    // Toggle #about when "?" button is clicked
+    toggleButton.addEventListener('click', function() {
+        if (isElementVisible(about)) {
+            about.style.display = 'none';
+        } else {
+            about.style.display = 'block';
+        }
+    });
+
+    // Close #about when the close button is clicked
+    closeButton.addEventListener('click', function() {
+        about.style.display = 'none';
+    });
+});
+
+
 
 
 

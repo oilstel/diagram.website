@@ -9,8 +9,7 @@
         body {
             font-family: Arial, Helvetica, sans-serif;
             color: #000;
-            /* background-color: rgb(167, 72, 37); */
-            background-color: rgb(178, 193, 193);
+            background-color: #b2c1c1;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale; 
             -webkit-text-size-adjust: none;
@@ -18,12 +17,72 @@
             padding: 0px;
         }
         #key {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
             position: fixed;
             bottom: 10px;
             left: 10px;
+            background-color: #fff;
+            padding: 6px;
+            border-radius: 3px;
+            border: 1px solid gray;
+            color: #4e5b5b;
         }
         [id^="category"] {
             transition: opacity 0.5s ease;
+        }
+        #about {
+            position: fixed;
+            top: 0;
+            left: 0;
+            max-width: 369px;
+            text-align: center;
+            margin: 15px;
+            background-color: #fff;
+            padding: 12px;
+            border-radius: 3px;
+            border: 1px solid gray;
+            color: #4e5b5b;
+            display: none;
+        }
+        #about img {
+            width: 100%;
+            border-radius: 4px;
+        }
+        #about h3 {
+            font-family: Courier, monospace;
+            font-size: 15px;
+            font-weight: normal;
+            margin: 0;
+            margin-top: 5px;
+        }
+        #about p {
+            font-size: 14px;
+            line-height: 18px;
+        }
+        #about p:last-child {
+            margin-bottom: 0;
+        }
+        #about p:first-child {
+            margin-top: 4px;
+        }
+        button#close {
+            position: absolute;
+            outline: none;
+            width: 16px;
+            height: 8px;
+            background-color: rgb(211, 211, 211);
+            border: 1px solid gray;
+            border-radius: 4px;
+            cursor: pointer;
+            top: 8px;
+            left: 6px;
+
+        }
+        button#close:hover {
+            background-color: #ededed;
         }
     </style>
 </head>
@@ -31,10 +90,16 @@
     <div id="key">
         <div class="control">
             <input type="checkbox" id="toggle-labels" checked>
-            <label for="">Labels</label>
+            <label for="labels">places</label>
         </div>
         <div class="control">
-            <button id="randomButton">Random</button>
+            <button id="randomButton">✜ random site</button>
+        </div>
+        <div class="control">
+            <button>+ submit a site</button>
+        </div>
+        <div class="control">
+            <button id="about-toggle">?</button>
         </div>
         <!-- <hr>
         <div class="category">
@@ -71,125 +136,134 @@
             <a href="#myth">Myth</a>
         </div>         -->
     </div>
-    <svg width="2248" height="1460" viewBox="0 0 2248 1460" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+    <svg width="2561" height="1663" viewBox="0 0 2561 1663" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="map">
-        <path id="category" d="M1654.17 962.337C1547.71 936.357 1388.75 950.635 914.62 844.677C839.484 827.886 951.656 701.248 1137.23 527.555C1281.34 392.67 1782.04 380.131 1974.86 515.691C2030.33 554.693 1913.82 679.703 1936.55 726.696C2038.3 937.023 1983.14 1038.25 1858.49 1049.83C1812.11 1054.14 1810.15 1046.54 1767.43 1027.29C1730.3 1010.56 1760.63 988.317 1654.17 962.337Z" stroke="#613AC1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 7"/>
-        <path id="category_2" d="M1431.98 1354.95C1262.25 1402.76 1100.58 1314.82 1015.22 1150.96C948.788 1044.88 1226.52 945.235 1262.25 766.108C1313.83 507.557 1974.73 898.2 1891.81 1138.61C1891.81 1138.61 1827.73 1428.61 1692.47 1419.8C1615.36 1414.78 1598.12 1313.25 1521.15 1320.12C1483.95 1323.44 1431.98 1354.95 1431.98 1354.95Z" stroke="#9BA415" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 7"/>
-        <path id="category_3" d="M1186.81 383.879C1154.31 331.959 1152.87 350.842 1251.79 323.814C1315.2 306.487 1505.99 284.909 1630.14 323.814C1747.75 360.67 1770.94 446.196 1827.26 467.968C1883.58 489.741 1985.19 504.007 1957.23 597.107C1931.93 681.351 1800.29 584.423 1734.12 564.823C1695.91 553.507 1625.51 533.607 1499.45 497.25C1463.5 486.881 1420.57 476.135 1376.71 463.471C1307.96 443.624 1236.91 419.068 1186.81 383.879Z" stroke="#FF7785" stroke-linecap="round" stroke-dasharray="7 7"/>
-        <path id="category_4" d="M959.549 998.19C861.664 1007.85 671.413 737.872 664.554 601.05C652.666 508.778 834.829 507.078 1039.05 475.058C1243.27 443.039 1503.01 774.364 1339.14 804.5L959.549 998.19Z" stroke="#3BA8EC" stroke-linecap="round" stroke-dasharray="7 7"/>
-        <path id="category_5" d="M924.8 1224.32C887.219 1211.72 540.638 1195.07 469.842 1057.74C456.772 963.207 690.449 748.194 901.937 717.203C1031.41 698.23 1171.97 837.79 1258.31 955.558C1368.74 1122.97 1465.63 990.843 1451.89 1086.19C1446.28 1125.14 1453.33 1141.74 1404.17 1141.74C1273.3 1176.27 1166.94 1202.04 1132.22 1212.32C1093.3 1223.85 1072.23 1245.11 1030.36 1247.59C988.287 1250.09 962.38 1236.93 924.8 1224.32Z" stroke="#BD9924" stroke-linecap="round" stroke-dasharray="7 7"/>
-        <path id="category_6" d="M1206.48 1349.98C1230.28 1286.57 1275.95 1281.01 1257.86 1216.06C1245.55 1171.86 1205.46 1145.34 1189.39 1118.26C1179.9 1102.24 1034.19 1128.62 889.977 1118.26C790.234 1111.09 685.16 1074.67 651.129 1042.41C591.589 985.979 437.614 1072.22 269.697 1073.38C208.466 1073.8 131.204 965.346 91.8052 974.555C10.8473 993.479 61.141 1150.8 91.8051 1197.19C136 1264.04 262.76 1332.75 336.11 1373.3C453.328 1438.11 652.262 1243.61 789.371 1249.19C1005.77 1257.99 1136.63 1536.12 1206.48 1349.98Z" stroke="#00BA97" stroke-linecap="round" stroke-dasharray="7 7"/>
-        <path id="category_7" d="M2045.5 767.993C2085.1 796.539 2219.13 849.123 2232.83 963.307C2246.54 1077.49 2270.91 1136.08 2197.8 1205.2C2124.7 1274.31 2033.31 1229.23 1966.3 1260.78C1899.29 1292.34 1638.84 1214.21 1683.01 1146.6C1727.18 1078.99 1692.15 1032.42 1683.01 963.307C1673.87 894.196 1881.01 858.138 1881.01 858.138L1968.7 805.203C1978.01 799.581 1984.99 790.868 1991.07 781.849C2000.95 767.204 2019.66 749.365 2045.5 767.993Z" stroke="#00B1D1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 7"/>
-        <path id="category_8" d="M1351.57 625.795C1298.13 654.569 1269.09 555.139 1213.38 544.616C1157.66 534.094 1081.12 567.448 1005.7 564.909C931.935 562.427 929.443 530.235 899.187 505.107C868.931 479.978 967.709 493.59 881.054 393.209C794.398 292.829 736.297 327.35 794.398 260.51C876.322 166.265 1206.07 -32.351 1227.85 11.1378C1265.07 85.4693 1447.01 462.746 1449.88 505.107C1452.74 547.467 1405.02 597.022 1351.57 625.795Z" stroke="#FF73BE" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 7"/>
-        <path id="category_9" d="M1719.96 1274.45H1817.36C1817.36 1274.45 1964.91 1268.94 2095.18 1274.45C2225.46 1279.95 2158.18 1452.98 2084.93 1454.81C2011.68 1456.65 1687.82 1444.41 1632.36 1442.58C1576.9 1440.74 1518.07 1404.27 1510.74 1371.85C1503.42 1339.43 1552.2 1321.16 1577.31 1307.71C1602.43 1294.25 1719.96 1274.45 1719.96 1274.45Z" stroke="#649B77" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 7"/>
-        <path id="category_10" d="M748.873 744.543C718.498 743.042 688.078 652.243 637.452 649.992C613.307 648.918 572.114 800.928 505.824 794.821C433.118 788.122 241.055 791.669 217.978 761.052C202.371 740.345 306.49 529.396 279.453 475.896C266.046 449.367 176.015 495.766 163.013 475.896C128.117 422.57 171.765 401.616 196.281 377.592C228.078 346.434 537.674 127.961 672.89 142.714C759.116 152.121 730.113 313.807 710.542 397.853C690.971 481.899 897.136 504.412 925.342 550.937C953.548 597.463 960.057 671.003 925.342 706.272C890.627 741.542 779.249 746.044 748.873 744.543Z" stroke="#20B01D" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 7"/>
-        <path id="category_11" d="M196.879 813.365C196.879 928.734 43.6813 966.629 12.5074 1007.05C-18.6664 1047.47 117.608 1338 244.085 1338C370.562 1338 742.869 1078.63 811.451 1034.84C880.034 991.05 913.88 772.102 861.33 748.523C861.33 748.523 780.786 771.064 727.97 772.74C660.539 774.88 691.822 686.191 643.396 607.031C628.938 554.486 677.109 494.944 655.684 479.421C615.541 450.337 501.881 505.891 469.186 506.284C331.019 507.945 196.879 755.407 196.879 813.365Z" stroke="#E57BED" stroke-linecap="round" stroke-dasharray="7 7"/>
-        <text id="Tiny Internet" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1844" y="913.199">Tiny Internet</tspan></text>
-        <text id="Small Web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1722" y="778.199">Small Web</tspan></text>
-        <text id="Smolnet" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1796" y="700.199">Smolnet</tspan></text>
-        <text id="Minimal Web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1396" y="640.199">Minimal Web</tspan></text>
-        <text id="Retro social networks" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="585" y="1224.2">Retro social networks</tspan></text>
-        <text id="Yesterweb" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="466" y="1285.2">Yesterweb</tspan></text>
-        <text id="Fansites" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="408" y="947.199">Fansites</tspan></text>
-        <text id="Indexes" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="208" y="977.199">Indexes</tspan></text>
-        <text id="Internet Archives" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="240" y="1028.2">Internet Archives</tspan></text>
-        <text id="Lightweight web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1619" y="618.199">Lightweight web</tspan></text>
-        <text id="Smallnet" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1670" y="719.199">Smallnet</tspan></text>
-        <text id="Text only websites" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1445" y="353.199">Text only websites</tspan></text>
-        <text id="1kB Club" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1869" y="566.199">1kB Club</tspan></text>
-        <text id="250KB Club" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1740" y="536.199">250KB Club</tspan></text>
-        <text id="500kB Club" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1701" y="494.199">500kB Club</tspan></text>
-        <text id="1MB Club" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1467" y="462.199">1MB Club</tspan></text>
-        <text id="Handmade web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em" text-decoration="underline"><tspan x="735" y="589.199"><a href="https://luckysoap.com/statements/handmadeweb.html">Handmade web</a></tspan></text>
-        <text id="Digital gardens" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1089" y="745.199">Digital gardens</tspan></text>
-        <text id="Brutalist Websites" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1094" y="607.199">Brutalist Websites</tspan></text>
-        <text id="Personal web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1157" y="668.199">Personal web</tspan></text>
-        <text id="Low tech" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1281" y="756.199">Low tech</tspan></text>
-        <text id="Feral web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1659" y="1333.2">Feral web</tspan></text>
-        <text id="Queer web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1511" y="1261.2">Queer web</tspan></text>
-        <text id="Eccentric Engineering" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1906" y="1322.2">Eccentric Engineering</tspan></text>
-        <text id="Mystical Tech" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1805" y="1422.2">Mystical Tech</tspan></text>
-        <text id="Esoteric Codes" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em" text-decoration="underline"><tspan x="561" y="205.199"><a href="https://esoteric.codes/">Esoteric Codes</a></tspan></text>
-        <text id="HTML Energy" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em" text-decoration="underline"><tspan x="570" y="355.199"><a href="https://html.energy/">HTML Energy</a></tspan></text>
-        <text id="Computational Delight" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em" text-decoration="underline"><tspan x="423" y="291.199"><a href="https://arbesman.net/computationaldelights/">Computational Delight</a></tspan></text>
-        <text id="Poetic web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em" text-decoration="underline"><tspan x="310" y="350.199"><a href="https://ambient.institute/i/poeticweb/">Poetic web</a></tspan></text>
-        <text id="Net.art" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em" text-decoration="underline"><tspan x="365" y="607.199"><a href="https://en.wikipedia.org/wiki/Net.art">Net.art</a></tspan></text>
-        <text id="Ambient web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="188" y="422.199">Ambient web</tspan></text>
-        <text id="Poetic Computation" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="329" y="459.199">Poetic Computation</tspan></text>
-        <text id="Minor Tech" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1722" y="964.199">Minor Tech</tspan></text>
-        <text id="Permacomputer" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1531" y="1001.2">Permacomputer</tspan></text>
-        <text id="Green Web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1312" y="960.199">Green Web</tspan></text>
-        <text id="Situated Software" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1525" y="812.199">Situated Software</tspan></text>
-        <text id="Organic Internet" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1503" y="887.199">Organic Internet</tspan></text>
-        <text id="Appropriate technology" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1336" y="859.199">Appropriate technology</tspan></text>
-        <text id="Indigenized Internet" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1451" y="1155.2">Indigenized Internet</tspan></text>
-        <text id="Agentic computing" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1135" y="1254.2">Agentic computing</tspan></text>
-        <text id="Feminist servers" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1192" y="1073.2">Feminist servers</tspan></text>
-        <text id="Cyberfeminism" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1271" y="1121.2">Cyberfeminism</tspan></text>
-        <text id="Pluriversal tech" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1116" y="1020.2">Pluriversal tech</tspan></text>
-        <text id="Alt protocols" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1052" y="1158.2">Alt protocols</tspan></text>
-        <text id="P2P Networks" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="887" y="1194.2">P2P Networks</tspan></text>
-        <text id="Communal Computing" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="700" y="1156.2">Communal Computing</tspan></text>
-        <text id="category_multiplayer" fill="#00BA97" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="384" y="1162.2">Multiplayer</tspan></text>
-        <text id="category_publish" fill="#E57BED" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="329" y="902.199">Publish</tspan></text>
-        <text id="category_html" fill="#20B01D" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="465" y="400.199">HTML</tspan></text>
-        <text id="category_personal" fill="#3BA8EC" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="999" y="693.199">Personal</tspan></text>
-        <text id="category_independence" fill="#BD9924" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="841" y="1029.2">Independence</tspan></text>
-        <text id="category_small" fill="#613AC1" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="1534" y="676.199">Small</tspan></text>
-        <text id="category_12" fill="#00B1D1" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="1926" y="1050.2">Atmosphere</tspan></text>
-        <text id="category_13" fill="#9BA415" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="1500" y="1072.2">ECOLOGY</tspan></text>
-        <text id="category_myth" fill="#649B77" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="1883" y="1362.2">Myth</tspan></text>
-        <text id="category_text" fill="#FF7785" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="1599" y="465.199">Text</tspan></text>
-        <text id="category_fun" fill="#FF73BE" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="1077" y="290.199">Fun</tspan></text>
-        <text id="Soft tech" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="2053" y="879.199">Soft tech</tspan></text>
-        <text id="Tender web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="2035" y="955.199">Tender web</tspan></text>
-        <text id="Quiet web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="2123" y="1073.2">Quiet web</tspan></text>
-        <text id="Proof of rest protocol" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1723" y="1130.2">Proof of rest protocol</tspan></text>
-        <text id="Slow web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1969" y="1193.2">Slow web</tspan></text>
-        <text id="Calm tech" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="2004" y="1121.2">Calm tech</tspan></text>
-        <text id="Solar Protocol" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1295" y="1302.2">Solar Protocol</tspan></text>
-        <text id="Solidarity infrastructures" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1292" y="1201.2">Solidarity infrastructures</tspan></text>
-        <text id="Indie web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="910" y="924.199">Indie web</tspan></text>
-        <text id="Cozy web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="780" y="827.199">Cozy web</tspan></text>
-        <text id="Blogging" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="570" y="796.199">Blogging</tspan></text>
-        <text id="Internet radio" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="221" y="1120.2">Internet radio</tspan></text>
-        <text id="Logging" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="493" y="866.199">Logging</tspan></text>
-        <text id="E-litterature" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="482" y="577.199">E-litterature</tspan></text>
-        <text id="Digital collages" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="356" y="743.199">Digital collages</tspan></text>
-        <text id="Digital altar" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="281" y="687.199">Digital altar</tspan></text>
-        <text id="Folder Poetry" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="459" y="653.199">Folder Poetry</tspan></text>
-        <text id="DYI Zines" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="193" y="916.199">DYI Zines</tspan></text>
-        <text id="Folk Databases" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="260" y="865.199">Folk Databases</tspan></text>
-        <text id="The Doc Web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="221" y="827.199">The Doc Web</tspan></text>
-        <text id="Self hosting" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="931" y="790.199">Self hosting</tspan></text>
-        <text id="Convivial tech" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="994" y="838.199">Convivial tech</tspan></text>
-        <text id="Webrings" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="520" y="1057.2">Webrings</tspan></text>
-        <text id="Vernacular web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="549" y="1092.2">Vernacular web</tspan></text>
-        <text id="Social networks" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="268" y="1206.2">Social networks</tspan></text>
-        <text id="Digital Folklore" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="240" y="1268.2">Digital Folklore</tspan></text>
-        <text id="Forums" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="370" y="1091.2">Forums</tspan></text>
-        <text id="Wikis" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="84" y="1034.2">Wikis</tspan></text>
-        <text id="Chat rooms" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="84" y="1103.2">Chat rooms</tspan></text>
-        <text id="Mailing lists" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="116" y="1178.2">Mailing lists</tspan></text>
-        <text id="Boutique search engines" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="570" y="977.199">Boutique search engines</tspan></text>
-        <text id="Alt Search Engines" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="595" y="911.199">Alt Search Engines</tspan></text>
-        <text id="Tech Independence" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="821" y="1092.2">Tech Independence</tspan></text>
-        <text id="Home cooked apps" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em" text-decoration="underline"><tspan x="715" y="658.199"><a href="https://www.robinsloan.com/notes/home-cooked-app/">Home cooked apps</a></tspan></text>
-        <text id="Whimsical Internet" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1120" y="83.1992">Whimsical Internet</tspan></text>
-        <text id="MF Website" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1219" y="374.199">MF Website</tspan></text>
-        <text id="Single-purpose sites" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1277" y="531.199">Single-purpose sites</tspan></text>
-        <text id="Silly Useless Software" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1083" y="222.199">Silly Useless Software</tspan></text>
-        <text id="Joy of Computing" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="846" y="278.199">Joy of Computing</tspan></text>
-        <text id="Uncomfortable Websites" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="949" y="429.199">Uncomfortable Websites</tspan></text>
-        <text id="Weird wide web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="954" y="175.199">Weird wide web</tspan></text>
-        <text id="Playful Software" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="945" y="522.199">Playful Software</tspan></text>
-        <text id="Printed Web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="384" y="831.199">Printed Web</tspan></text>
+        <path id="category" d="M1807.17 1044.34C1700.71 1018.36 1541.75 1032.63 1067.62 926.677C992.484 909.886 1104.66 783.248 1290.23 609.555C1434.34 474.67 1935.04 462.131 2127.86 597.691C2183.33 636.693 2066.82 761.703 2089.55 808.696C2191.3 1019.02 2136.14 1120.25 2011.49 1131.83C1965.11 1136.14 1963.15 1128.54 1920.43 1109.29C1883.3 1092.56 1913.63 1070.32 1807.17 1044.34Z" stroke="#613AC1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 7"/>
+        <path id="category_2" d="M1584.98 1436.95C1415.25 1484.76 1253.58 1396.82 1168.22 1232.96C1101.79 1126.88 1379.52 1027.23 1415.25 848.108C1466.83 589.557 2127.73 980.2 2044.81 1220.61C2044.81 1220.61 1980.73 1510.61 1845.47 1501.8C1768.36 1496.78 1751.12 1395.25 1674.15 1402.12C1636.95 1405.44 1584.98 1436.95 1584.98 1436.95Z" stroke="#9BA415" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 7"/>
+        <path id="category_3" d="M1339.81 465.879C1307.31 413.959 1305.87 432.842 1404.79 405.814C1468.2 388.487 1658.99 366.909 1783.14 405.814C1900.75 442.67 1923.94 528.196 1980.26 549.968C2036.58 571.741 2138.19 586.007 2110.23 679.107C2084.93 763.351 1953.29 666.423 1887.12 646.823C1848.91 635.507 1778.51 615.607 1652.45 579.25C1616.5 568.881 1573.57 558.135 1529.71 545.471C1460.96 525.624 1389.91 501.068 1339.81 465.879Z" stroke="#FF7785" stroke-linecap="round" stroke-dasharray="7 7"/>
+        <path id="category_4" d="M1112.55 1080.19C1014.66 1089.85 824.413 819.872 817.554 683.05C805.666 590.778 987.829 589.078 1192.05 557.058C1396.27 525.039 1656.01 856.364 1492.14 886.5L1112.55 1080.19Z" stroke="#3BA8EC" stroke-linecap="round" stroke-dasharray="7 7"/>
+        <path id="category_5" d="M1077.8 1306.32C1040.22 1293.72 693.638 1277.07 622.842 1139.74C609.772 1045.21 843.449 830.194 1054.94 799.203C1184.41 780.23 1324.97 919.79 1411.31 1037.56C1521.74 1204.97 1618.63 1072.84 1604.89 1168.19C1599.28 1207.14 1606.33 1223.74 1557.17 1223.74C1426.3 1258.27 1319.94 1284.04 1285.22 1294.32C1246.3 1305.85 1225.23 1327.11 1183.36 1329.59C1141.29 1332.09 1115.38 1318.93 1077.8 1306.32Z" stroke="#BD9924" stroke-linecap="round" stroke-dasharray="7 7"/>
+        <path id="category_6" d="M1359.48 1431.98C1383.28 1368.57 1428.95 1363.01 1410.86 1298.06C1398.55 1253.86 1358.46 1227.34 1342.39 1200.26C1332.9 1184.24 1187.19 1210.62 1042.98 1200.26C943.234 1193.09 838.16 1156.67 804.129 1124.41C744.589 1067.98 590.614 1154.22 422.697 1155.38C361.466 1155.8 284.204 1047.35 244.805 1056.56C163.847 1075.48 214.141 1232.8 244.805 1279.19C289 1346.04 415.76 1414.75 489.11 1455.3C606.328 1520.11 805.262 1325.61 942.371 1331.19C1158.77 1339.99 1289.63 1618.12 1359.48 1431.98Z" stroke="#00BA97" stroke-linecap="round" stroke-dasharray="7 7"/>
+        <path id="category_7" d="M2198.5 849.993C2238.1 878.539 2372.13 931.123 2385.83 1045.31C2399.54 1159.49 2423.91 1218.08 2350.8 1287.2C2277.7 1356.31 2186.31 1311.23 2119.3 1342.78C2052.29 1374.34 1791.84 1296.21 1836.01 1228.6C1880.18 1160.99 1845.15 1114.42 1836.01 1045.31C1826.87 976.196 2034.01 940.138 2034.01 940.138L2121.7 887.203C2131.01 881.581 2137.99 872.868 2144.07 863.849C2153.95 849.204 2172.66 831.365 2198.5 849.993Z" stroke="#00B1D1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 7"/>
+        <path id="category_8" d="M1504.57 707.795C1451.13 736.569 1422.09 637.139 1366.38 626.616C1310.66 616.094 1234.12 649.448 1158.7 646.909C1084.93 644.427 1082.44 612.235 1052.19 587.107C1021.93 561.978 1120.71 575.59 1034.05 475.209C947.398 374.829 889.297 409.35 947.398 342.51C1029.32 248.265 1359.07 49.649 1380.85 93.1377C1418.07 167.469 1600.01 544.746 1602.88 587.107C1605.74 629.467 1558.02 679.022 1504.57 707.795Z" stroke="#979797" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 7"/>
+        <path id="category_9" d="M1872.96 1356.45H1970.36C1970.36 1356.45 2117.91 1350.94 2248.18 1356.45C2378.46 1361.95 2311.18 1534.98 2237.93 1536.81C2164.68 1538.65 1840.82 1526.41 1785.36 1524.58C1729.9 1522.74 1671.07 1486.27 1663.74 1453.85C1656.42 1421.43 1705.2 1403.16 1730.31 1389.71C1755.43 1376.25 1872.96 1356.45 1872.96 1356.45Z" stroke="#649B77" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 7"/>
+        <path id="category_10" d="M901.873 826.543C871.498 825.042 841.078 734.243 790.452 731.992C766.307 730.918 725.114 882.928 658.824 876.821C586.118 870.122 394.055 873.669 370.978 843.052C355.371 822.345 459.49 611.396 432.453 557.896C419.046 531.367 329.015 577.766 316.013 557.896C281.117 504.57 324.765 483.616 349.281 459.592C381.078 428.434 690.674 209.961 825.89 224.714C912.116 234.121 883.113 395.807 863.542 479.853C843.971 563.899 1050.14 586.412 1078.34 632.937C1106.55 679.463 1113.06 753.003 1078.34 788.272C1043.63 823.542 932.249 828.044 901.873 826.543Z" stroke="#26A223" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 7"/>
+        <path id="category_11" d="M349.879 895.365C349.879 1010.73 196.681 1048.63 165.507 1089.05C134.334 1129.47 270.608 1420 397.085 1420C523.562 1420 895.869 1160.63 964.451 1116.84C1033.03 1073.05 1066.88 854.102 1014.33 830.523C1014.33 830.523 933.786 853.064 880.97 854.74C813.539 856.88 844.822 768.191 796.396 689.031C781.938 636.486 830.109 576.944 808.684 561.421C768.541 532.337 654.881 587.891 622.186 588.284C484.019 589.945 349.879 837.407 349.879 895.365Z" stroke="#A136A9" stroke-linecap="round" stroke-dasharray="7 7"/>
+        <text id="Tiny Internet" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1997" y="995.199">Tiny Internet</tspan></text>
+        <text id="Small Web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1875" y="860.199">Small Web</tspan></text>
+        <text id="Smolnet" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1949" y="782.199">Smolnet</tspan></text>
+        <text id="Minimal Web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1549" y="722.199">Minimal Web</tspan></text>
+        <text id="Retro social networks" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="738" y="1306.2">Retro social networks</tspan></text>
+        <text id="Yesterweb" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="619" y="1367.2">Yesterweb</tspan></text>
+        <text id="Fansites" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="561" y="1029.2">Fansites</tspan></text>
+        <text id="Indexes" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="361" y="1059.2">Indexes</tspan></text>
+        <text id="Internet Archives" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="393" y="1110.2">Internet Archives</tspan></text>
+        <text id="Lightweight web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1772" y="700.199">Lightweight web</tspan></text>
+        <text id="Smallnet" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1823" y="801.199">Smallnet</tspan></text>
+        <text id="Text only websites" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1598" y="435.199">Text only websites</tspan></text>
+        <text id="1kB Club" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="2022" y="648.199">1kB Club</tspan></text>
+        <text id="250KB Club" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1893" y="618.199">250KB Club</tspan></text>
+        <text id="500kB Club" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1854" y="576.199">500kB Club</tspan></text>
+        <text id="1MB Club" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1620" y="544.199">1MB Club</tspan></text>
+        <text id="Handmade web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em" text-decoration="underline"><tspan x="888" y="671.199"><a href="https://luckysoap.com/statements/handmadeweb.html">Handmade web</a></tspan></text>
+        <text id="Digital gardens" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1242" y="827.199">Digital gardens</tspan></text>
+        <text id="Brutalist Websites" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1247" y="689.199">Brutalist Websites</tspan></text>
+        <text id="Personal web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1310" y="750.199">Personal web</tspan></text>
+        <text id="Low tech" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1434" y="838.199">Low tech</tspan></text>
+        <text id="Feral web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1812" y="1415.2">Feral web</tspan></text>
+        <text id="Queer web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1664" y="1343.2">Queer web</tspan></text>
+        <text id="Eccentric Engineering" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="2059" y="1404.2">Eccentric Engineering</tspan></text>
+        <text id="Mystical Tech" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1958" y="1504.2">Mystical Tech</tspan></text>
+        <text id="Esoteric Codes" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em" text-decoration="underline"><tspan x="714" y="287.199"><a href="https://esoteric.codes/">Esoteric Codes</a></tspan></text>
+        <text id="HTML Energy" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em" text-decoration="underline"><tspan x="723" y="437.199"><a href="https://html.energy/">HTML Energy</a></tspan></text>
+        <text id="Computational Delight" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em" text-decoration="underline"><tspan x="576" y="373.199"><a href="https://arbesman.net/computationaldelights/">Computational Delight</a></tspan></text>
+        <text id="Poetic web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em" text-decoration="underline"><tspan x="463" y="432.199"><a href="https://ambient.institute/i/poeticweb/">Poetic web</a></tspan></text>
+        <text id="Net.art" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em" text-decoration="underline"><tspan x="518" y="689.199"><a href="https://en.wikipedia.org/wiki/Net.art">Net.art</a></tspan></text>
+        <text id="Ambient web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="341" y="504.199">Ambient web</tspan></text>
+        <text id="Poetic Computation" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="482" y="541.199">Poetic Computation</tspan></text>
+        <text id="Minor Tech" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1875" y="1046.2">Minor Tech</tspan></text>
+        <text id="Permacomputer" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1684" y="1083.2">Permacomputer</tspan></text>
+        <text id="Green Web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1465" y="1042.2">Green Web</tspan></text>
+        <text id="Situated Software" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1678" y="894.199">Situated Software</tspan></text>
+        <text id="Organic Internet" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1656" y="969.199">Organic Internet</tspan></text>
+        <text id="Appropriate technology" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1489" y="941.199">Appropriate technology</tspan></text>
+        <text id="Indigenized Internet" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1604" y="1237.2">Indigenized Internet</tspan></text>
+        <text id="Agentic computing" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1288" y="1336.2">Agentic computing</tspan></text>
+        <text id="Feminist servers" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1345" y="1155.2">Feminist servers</tspan></text>
+        <text id="Cyberfeminism" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1424" y="1203.2">Cyberfeminism</tspan></text>
+        <text id="Pluriversal tech" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1269" y="1102.2">Pluriversal tech</tspan></text>
+        <text id="Alt protocols" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1205" y="1240.2">Alt protocols</tspan></text>
+        <text id="P2P Networks" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1040" y="1276.2">P2P Networks</tspan></text>
+        <text id="Communal Computing" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="853" y="1238.2">Communal Computing</tspan></text>
+        <text id="category_multiplayer" fill="#0D937A" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="537" y="1244.2">Multiplayer</tspan></text>
+        <text id="category_publish" fill="#A926B3" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="482" y="984.199">Publish</tspan></text>
+        <text id="category_html" fill="#139821" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="618" y="482.199">HTML</tspan></text>
+        <text id="category_personal" fill="#277CB1" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="1152" y="775.199">Personal</tspan></text>
+        <text id="category_independence" fill="#9F7F17" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="994" y="1111.2">Independence</tspan></text>
+        <text id="category_small" fill="#613AC1" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="1687" y="758.199">Small</tspan></text>
+        <text id="category_12" fill="#0094AE" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="2079" y="1132.2">Atmosphere</tspan></text>
+        <text id="category_13" fill="#82864A" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="1653" y="1154.2">Ecology</tspan></text>
+        <text id="category_myth" fill="#3C8756" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="2036" y="1444.2">Myth</tspan></text>
+        <text id="category_text" fill="#E46C79" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="1752" y="547.199">Text</tspan></text>
+        <text id="category_fun" fill="#7A7676" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="1230" y="372.199">Fun</tspan></text>
+        <text id="Soft tech" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="2206" y="961.199">Soft tech</tspan></text>
+        <text id="Tender web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="2188" y="1037.2">Tender web</tspan></text>
+        <text id="Quiet web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="2276" y="1155.2">Quiet web</tspan></text>
+        <text id="Proof of rest protocol" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1876" y="1212.2">Proof of rest protocol</tspan></text>
+        <text id="Slow web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="2122" y="1275.2">Slow web</tspan></text>
+        <text id="Calm tech" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="2157" y="1203.2">Calm tech</tspan></text>
+        <text id="Solar Protocol" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1448" y="1384.2">Solar Protocol</tspan></text>
+        <text id="Solidarity infrastructures" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1445" y="1283.2">Solidarity infrastructures</tspan></text>
+        <text id="Indie web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1063" y="1006.2">Indie web</tspan></text>
+        <text id="Cozy web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="933" y="909.199">Cozy web</tspan></text>
+        <text id="Blogging" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="723" y="878.199">Blogging</tspan></text>
+        <text id="Internet radio" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="374" y="1202.2">Internet radio</tspan></text>
+        <text id="Logging" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="646" y="948.199">Logging</tspan></text>
+        <text id="E-litterature" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="635" y="659.199">E-litterature</tspan></text>
+        <text id="Digital collages" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="509" y="825.199">Digital collages</tspan></text>
+        <text id="Digital altar" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="434" y="769.199">Digital altar</tspan></text>
+        <text id="Folder Poetry" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="612" y="735.199">Folder Poetry</tspan></text>
+        <text id="DYI Zines" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="346" y="998.199">DYI Zines</tspan></text>
+        <text id="Folk Databases" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="413" y="947.199">Folk Databases</tspan></text>
+        <text id="The Doc Web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="374" y="909.199">The Doc Web</tspan></text>
+        <text id="Self hosting" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1084" y="872.199">Self hosting</tspan></text>
+        <text id="Convivial tech" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1147" y="920.199">Convivial tech</tspan></text>
+        <text id="Webrings" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="673" y="1139.2">Webrings</tspan></text>
+        <text id="Vernacular web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="702" y="1174.2">Vernacular web</tspan></text>
+        <text id="Social networks" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="421" y="1288.2">Social networks</tspan></text>
+        <text id="Digital Folklore" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="393" y="1350.2">Digital Folklore</tspan></text>
+        <text id="Forums" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="523" y="1173.2">Forums</tspan></text>
+        <text id="Wikis" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="237" y="1116.2">Wikis</tspan></text>
+        <text id="Chat rooms" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="237" y="1185.2">Chat rooms</tspan></text>
+        <text id="Mailing lists" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="269" y="1260.2">Mailing lists</tspan></text>
+        <text id="Boutique search engines" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="723" y="1059.2">Boutique search engines</tspan></text>
+        <text id="Alt Search Engines" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="748" y="993.199">Alt Search Engines</tspan></text>
+        <text id="Tech Independence" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="974" y="1174.2">Tech Independence</tspan></text>
+        <text id="Home cooked apps" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em" text-decoration="underline"><tspan x="868" y="740.199"><a href="https://www.robinsloan.com/notes/home-cooked-app/">Home cooked apps</a></tspan></text>
+        <text id="Whimsical Internet" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1273" y="165.199">Whimsical Internet</tspan></text>
+        <text id="MF Website" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1372" y="456.199">MF Website</tspan></text>
+        <text id="Single-purpose sites" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1430" y="613.199">Single-purpose sites</tspan></text>
+        <text id="Silly Useless Software" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1236" y="304.199">Silly Useless Software</tspan></text>
+        <text id="Joy of Computing" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="999" y="360.199">Joy of Computing</tspan></text>
+        <text id="Uncomfortable Websites" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1102" y="511.199">Uncomfortable Websites</tspan></text>
+        <text id="Weird wide web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1107" y="257.199">Weird wide web</tspan></text>
+        <text id="Playful Software" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="1098" y="604.199">Playful Software</tspan></text>
+        <text id="Printed Web" fill="black" xml:space="preserve" style="white-space: pre" font-family="Times" font-size="16" letter-spacing="0em"><tspan x="537" y="913.199">Printed Web</tspan></text>
         </g>
-        </svg>
+        </svg>        
         
-        
-        
-        
+    <div id="about">
+        <button id="close"></button>
+
+        <br>
+
+        <img src="images/you-are-here.jpg" alt="">
+
+        <h3>diagram.website</h3>
+
+        <p>A project by Kristoffer Tjalve with help from Elliott Cost.<br>Made in Athens, November 2023.</p>
+    </div>    
         
     <script src="script.js"></script>     
 </body>

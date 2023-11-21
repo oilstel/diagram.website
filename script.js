@@ -97,7 +97,7 @@ document.getElementById('submission-form').addEventListener('submit', function(e
         body: new URLSearchParams(formObject).toString()
     }).then(response => {
         console.log('Form submitted');
-        submissionForm.innerHTML = `<p>We are reviewing your submission.</p>`
+        submissionForm.innerHTML = `<p>Thank you! We are reviewing your submission.</p><br>`
         // Handle success
     }).catch(error => {
         console.error('Error submitting form', error);

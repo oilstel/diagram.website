@@ -87,7 +87,7 @@ document.getElementById('submission-form').addEventListener('submit', function(e
 
     var submissionForm = document.getElementById('submission-form');
 
-    fetch('https://script.google.com/macros/s/AKfycbwYOsOTeBeNwr6ny1dA2Ch3bCVnC6JAg0CeW4ZMuRjERbk90uIsIvvRZCl7_XrS6bAN/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbw8mTkZnE0cobdz5odWwulUGqwSsU9OyiC8lukoI7ne-HsSZRXULaKiBIVf45uOresMVQ/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: {

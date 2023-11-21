@@ -76,6 +76,16 @@ document.addEventListener('DOMContentLoaded', function() {
     closeSubmissionsButton.addEventListener('click', function() {
         submissions.style.display = 'none';
     });
+
+    document.getElementById('places').addEventListener('click', function() {
+        var checkbox = document.getElementById('toggle-labels');
+        checkbox.checked = !checkbox.checked;
+    
+        // Manually trigger the change event for the checkbox
+        var event = new Event('change');
+        checkbox.dispatchEvent(event);
+    });
+    
 });
 
 

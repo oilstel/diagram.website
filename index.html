@@ -30,13 +30,15 @@
             /* border: 1px solid rgb(189, 189, 189); */
             color: #4e5b5b;
         }
-        #key button, #key #places {
+        #key button, #key #places, #key a {
+            font-size: 13px;
             color: #000;
             background-color: #f0f0f0;
             border: 1px solid rgb(185, 185, 185);
             border-radius: 4px;
             padding: 3px 6px;
             cursor: pointer;
+            text-decoration: none;
         }
         #key #places {
             display: flex;
@@ -49,7 +51,7 @@
         #key #places input {
             margin: 0;
         }
-        #key button:hover {
+        #key button:hover, #key a:hover {
             background-color: #e8e8e8e4;
         }
         [id^="category"] {
@@ -126,7 +128,7 @@
             background-color: #e8e8e8;
         }
         body.evening {
-            background-color: #000;
+            background-color: #2a2a2a;
         }
         body.evening svg a {
             fill: rgb(213, 213, 213) !important;
@@ -134,10 +136,13 @@
             text-decoration-color: #000 !important;
         }
         body.expressive {
-            background-color: #000;
+            background-color: #303030;
         }
         body.expressive svg a {
             fill: #fff !important;
+        }
+        body.expressive #places {
+            display: none !important;
         }
         body svg rect {
             fill: none !important;
@@ -149,18 +154,21 @@
 </head>
 <body class="evening">
     <div id="key">
-        <div class="control" id="places">
-            <input type="checkbox" id="toggle-labels" checked>
-            <label for="labels">layer</label>
-        </div>
         <div class="control">
             <button id="randomButton">random</button>
         </div>
         <div class="control">
             <button id="theme-toggle">mode</button>
         </div>
+        <div class="control" id="places">
+            <input type="checkbox" id="toggle-labels" checked>
+            <label for="labels">layer</label>
+        </div>
         <div class="control">
             <button id="about-toggle">info & submit</button>
+        </div>
+        <div class="control">
+            <a href="https://docs.google.com/spreadsheets/d/1y5AMSi3Q7JuyNmghJSBV6GhEBLAsdCfKTRoWzrc-8xE/edit#gid=0">view index</a>
         </div>
     </div>
 
@@ -177,12 +185,12 @@
 
         <h3>Diagram Website</h3>
 
-        <p>A project by Kristoffer Tjalve and Elliott Cost.<br>Made in Athens, November 2023.</p>
+        <p>A project by <a href="https://cloudlord.management/">Kristoffer Tjalve</a> and <a href="https;//elliott.computer">Elliott Cost</a>.<br>Made in Athens, November 2023.</p>
 
         <hr>
 
         <div id="submissions">
-            <p>Submit a site</p>
+            <p>Submit a link</p>
     
             <form id="submission-form">
                 <input type="text" placeholder="http://" type="url" id="url" name="url" required>

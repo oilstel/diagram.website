@@ -78,7 +78,7 @@ document.getElementById('submission-form').addEventListener('submit', function(e
         body: new URLSearchParams(formObject).toString()
     }).then(response => {
         console.log('Form submitted');
-        submissionForm.innerHTML = `<p>Thank you for your submission.</p>`
+        submissionForm.innerHTML = `<p>We are reviewing your submission.</p>`
         // Handle success
     }).catch(error => {
         console.error('Error submitting form', error);
@@ -139,6 +139,8 @@ document.getElementById('theme-toggle').addEventListener('click', function() {
     document.getElementById('diagrams').setAttribute('data-current-theme', nextTheme);
     updateBodyClass(nextTheme, themes);
     updateButtonText(nextTheme);
+
+    document.getElementById('toggle-labels').checked = true;
 });
 
 // Function to update body class

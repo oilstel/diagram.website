@@ -34,9 +34,10 @@ document.getElementById('randomButton').addEventListener('click', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    var about = document.getElementById('about');
-    var toggleButton = document.querySelector('#key button#about-toggle');
-    var closeButton = document.getElementById('close');
+    var info = document.getElementById('info');
+    var infoToggleButton = document.querySelector('#key button#info-toggle');
+    var submissions = document.getElementById('submissions');
+    var submitToggleButton = document.querySelector('#key button#submissions-toggle');
 
     // Function to check if the element is currently visible
     function isElementVisible(element) {
@@ -44,20 +45,38 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Toggle #about when "?" button is clicked
-    toggleButton.addEventListener('click', function() {
-        if (isElementVisible(about)) {
-            about.style.display = 'none';
+    infoToggleButton.addEventListener('click', function() {
+        if (isElementVisible(info)) {
+            info.style.display = 'none';
         } else {
-            about.style.display = 'block';
+            info.style.display = 'block';
         }
+        submissions.style.display = 'none';
+    });
+
+
+    // Toggle #about when "?" button is clicked
+    submitToggleButton.addEventListener('click', function() {
+        if (isElementVisible(submissions)) {
+            submissions.style.display = 'none';
+        } else {
+            submissions.style.display = 'block';
+        }
+        info.style.display = 'none';
     });
 
     // Close #about when the close button is clicked
-    closeButton.addEventListener('click', function() {
-        about.style.display = 'none';
+    var closeInfoButton = document.getElementById('close-info');
+    var closeSubmissionsButton = document.getElementById('close-submissions');
+    
+    closeInfoButton.addEventListener('click', function() {
+        info.style.display = 'none';
+    });
+    
+    closeSubmissionsButton.addEventListener('click', function() {
+        submissions.style.display = 'none';
     });
 });
-
 
 
 document.getElementById('submission-form').addEventListener('submit', function(event) {
@@ -124,7 +143,7 @@ function loadSvg(theme) {
 
 // Event listener for theme toggle
 document.getElementById('theme-toggle').addEventListener('click', function() {
-    const themes = ['evening', 'day', 'expressive'];
+    const themes = ['evening', 'day', 'silkscreen'];
     const currentTheme = document.getElementById('diagrams').getAttribute('data-current-theme');
     const currentThemeIndex = themes.indexOf(currentTheme);
 
@@ -163,6 +182,25 @@ document.addEventListener('DOMContentLoaded', function() {
     updateButtonText(initialTheme); // Set initial button text
 });
 
+
+// Disable pinch zoom
+document.addEventListener('gesturestart', function(e) {
+    e.preventDefault();
+    // special hack to prevent zoom-to-tabs gesture in safari
+    document.body.style.zoom = 0.99;
+});
+
+document.addEventListener('gesturechange', function(e) {
+    e.preventDefault();
+    // special hack to prevent zoom-to-tabs gesture in safari
+    document.body.style.zoom = 0.99;
+});
+
+document.addEventListener('gestureend', function(e) {
+    e.preventDefault();
+    // special hack to prevent zoom-to-tabs gesture in safari
+    document.body.style.zoom = 0.99;
+});
 
 
 

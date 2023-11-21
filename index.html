@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>diagram.website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Diagram Website</title>
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
     <style>
         *, *:before, *:after { box-sizing: border-box; }
         body {
@@ -29,16 +30,26 @@
             border-radius: 3px;
             /* border: 1px solid rgb(189, 189, 189); */
             color: #4e5b5b;
+            width: max-content;
+            z-index: 2;
         }
-        #key button, #key #places, #key a {
+        #key button, #key #places, #key a, #submissions form input[type="submit"] {
             font-size: 13px;
             color: #000;
             background-color: #f0f0f0;
-            border: 1px solid rgb(185, 185, 185);
+            border: 0;
             border-radius: 4px;
             padding: 3px 6px;
             cursor: pointer;
             text-decoration: none;
+            font-weight: normal;
+        }
+        #key label {
+            font-size: 13px;
+            color: #000;
+        }
+        #submissions form input[type="submit"] {
+            border: 1px solid rgb(185, 185, 185);
         }
         #key #places {
             display: flex;
@@ -57,46 +68,54 @@
         [id^="category"] {
             transition: opacity 0.5s ease;
         }
-        #about {
+        .modal-outer {
             position: fixed;
-            top: 10px;
-            left: 10px;
-            max-width: 369px;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            max-width: 400px;
+            display: none;
+            padding: 10px;
+        }
+        .modal {
+            position: relative;
+            width: 100%;
+            padding: 15px;
             text-align: center;
             background-color: #fff;
-            padding: 12px;
             border-radius: 3px;
-            border: 1px solid gray;
             color: #4e5b5b;
-            display: none;
         }
-        #about img {
+        .modal a {
+            color: #4e5b5b;
+        }
+        .modal img {
             width: 100%;
             border-radius: 4px;
         }
-        #about h3 {
+        .modal h3 {
             font-family: Courier, monospace;
             font-size: 15px;
             font-weight: normal;
             margin: 0;
             margin-top: 5px;
         }
-        #about p {
+        .modal p {
             font-size: 14px;
             line-height: 18px;
         }
-        #about p:last-child {
+        .modal p:last-child {
             margin-bottom: 0;
         }
-        #about p:first-child {
+        .modal p:first-child {
             margin-top: 4px;
         }
-        button#close {
+        button.close {
             position: absolute;
             outline: none;
-            width: 16px;
-            height: 8px;
-            background-color: rgb(211, 211, 211);
+            width: 20px;
+            height: 10px;
+            background-color: #ededed;
             border: 1px solid gray;
             border-radius: 4px;
             cursor: pointer;
@@ -104,8 +123,8 @@
             left: 6px;
 
         }
-        button#close:hover {
-            background-color: #ededed;
+        button.close:hover {
+            background-color: rgb(211, 211, 211);
         }
         #submissions {
             text-align: left;
@@ -114,6 +133,11 @@
             display: flex;
             flex-flow: column nowrap;
             gap: 10px;
+        }
+        #submissions form input, #submissions form textarea, #submissions form input[type="url"]::placeholder, #submissions form textarea::placeholder {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            color: #4e5b5b;
         }
         #submissions form textarea {
             resize: vertical;
@@ -125,23 +149,25 @@
             cursor: pointer;
         }
         body.day {
-            background-color: #e8e8e8;
+            background-color: #cbcbcb;
+            /* background-image: url('images/texture.png');
+            background-repeat: repeat; */
         }
         body.evening {
-            background-color: #2a2a2a;
+            background-color: #000;
         }
         body.evening svg a {
             fill: rgb(213, 213, 213) !important;
             text-decoration: none !important;
             text-decoration-color: #000 !important;
         }
-        body.expressive {
-            background-color: #303030;
+        body.silkscreen {
+            background-color: #858585;
         }
-        body.expressive svg a {
+        body.silkscreen svg a {
             fill: #fff !important;
         }
-        body.expressive #places {
+        body.silkscreen #places {
             display: none !important;
         }
         body svg rect {
@@ -149,6 +175,15 @@
         }
         svg a {
             text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            #key {
+                flex-flow: row wrap;
+                justify-content: flex-start;
+                width: 100dvw;
+                max-width: 300px;
+            }
         }
     </style>
 </head>
@@ -165,7 +200,10 @@
             <label for="labels">layer</label>
         </div>
         <div class="control">
-            <button id="about-toggle">info & submit</button>
+            <button id="info-toggle">info</button>
+        </div>
+        <div class="control">
+            <button id="submissions-toggle">submit</button>
         </div>
         <div class="control">
             <a href="https://docs.google.com/spreadsheets/d/1y5AMSi3Q7JuyNmghJSBV6GhEBLAsdCfKTRoWzrc-8xE/edit#gid=0">view index</a>
@@ -174,22 +212,26 @@
 
     <div id="diagrams" data-current-theme="evening"></div>
             
-               
-        
-    <div id="about">
-        <button id="close"></button>
+    <div id="info" class="modal-outer">
+        <div class="modal">
+            <button id="close-info" class="close"></button>
+    
+            <br>
+    
+            <img src="images/you-are-here.jpg" alt="">
+    
+            <h3>Diagram Website</h3>
+    
+            <p>A project by <a href="https://cloudlord.management/">Kristoffer Tjalve</a> and <a href="https;//elliott.computer">Elliott Cost</a>.<br>Made in Athens, November 2023.</p>
+        </div>
+    </div>    
 
-        <br>
-
-        <img src="images/you-are-here.jpg" alt="">
-
-        <h3>Diagram Website</h3>
-
-        <p>A project by <a href="https://cloudlord.management/">Kristoffer Tjalve</a> and <a href="https;//elliott.computer">Elliott Cost</a>.<br>Made in Athens, November 2023.</p>
-
-        <hr>
-
-        <div id="submissions">
+    <div id="submissions" class="modal-outer">
+        <div class="modal">
+            <button id="close-submissions" class="close"></button>
+    
+            <br>
+    
             <p>Submit a link</p>
     
             <form id="submission-form">
@@ -198,11 +240,11 @@
                 <input type="submit" value="submit">
             </form>
         </div>
+    </div>
 
-        <div>
-            <a href="https://docs.google.com/spreadsheets/d/1DeMrEFqwjswyp9p_7HTKYr7Dba5MLw33d73jC2hL0Lo/edit?usp=sharing">View index</a>
-        </div>
-    </div>    
+    <div>
+        <a href="https://docs.google.com/spreadsheets/d/1DeMrEFqwjswyp9p_7HTKYr7Dba5MLw33d73jC2hL0Lo/edit?usp=sharing">View index</a>
+    </div>
         
     <script src="script.js"></script>     
 </body>

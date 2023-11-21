@@ -181,7 +181,7 @@ function updateBodyClass(newTheme, themes) {
 // Function to update button text with current theme
 function updateButtonText(theme) {
     const themeToggleButton = document.getElementById('theme-toggle');
-    themeToggleButton.textContent = `theme: ${theme}`;
+    themeToggleButton.textContent = `${theme}`;
 }
 
 // Load initial SVG (evening) on page load

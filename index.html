@@ -5,187 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Diagram Website</title>
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
-    <style>
-        *, *:before, *:after { box-sizing: border-box; }
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            color: #000;
-            /* background-color: #e8e8e8; */
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale; 
-            -webkit-text-size-adjust: none;
-            margin: 0px;
-            padding: 0px;
-        }
-        #key {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
-            position: fixed;
-            bottom: 10px;
-            left: 10px;
-            /* background-color: #fff; */
-            /* padding: 6px 8px; */
-            border-radius: 3px;
-            /* border: 1px solid rgb(189, 189, 189); */
-            color: #4e5b5b;
-            width: max-content;
-            z-index: 2;
-        }
-        #key button, #key #places, #key a, #submissions form input[type="submit"] {
-            font-size: 13px;
-            color: #000;
-            background-color: #f0f0f0;
-            border: 0;
-            border-radius: 4px;
-            padding: 3px 6px;
-            cursor: pointer;
-            text-decoration: none;
-            font-weight: normal;
-        }
-        #key label {
-            font-size: 13px;
-            color: #000;
-        }
-        #submissions form input[type="submit"] {
-            border: 1px solid rgb(185, 185, 185);
-        }
-        #key #places {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 14px;
-            gap: 4px;
-            padding: 3px 6px;
-        }
-        #key #places input {
-            margin: 0;
-        }
-        #key button:hover, #key a:hover {
-            background-color: #e8e8e8e4;
-        }
-        [id^="category"] {
-            transition: opacity 0.5s ease;
-        }
-        .modal-outer {
-            position: fixed;
-            top: 0px;
-            left: 0px;
-            width: 100%;
-            max-width: 400px;
-            display: none;
-            padding: 10px;
-        }
-        .modal {
-            position: relative;
-            width: 100%;
-            padding: 15px;
-            text-align: center;
-            background-color: #fff;
-            border-radius: 3px;
-            color: #4e5b5b;
-        }
-        .modal a {
-            color: #4e5b5b;
-        }
-        .modal img {
-            width: 100%;
-            border-radius: 4px;
-        }
-        .modal h3 {
-            font-family: Courier, monospace;
-            font-size: 15px;
-            font-weight: normal;
-            margin: 0;
-            margin-top: 5px;
-        }
-        .modal p {
-            font-size: 14px;
-            line-height: 18px;
-        }
-        .modal p:last-child {
-            margin-bottom: 0;
-        }
-        .modal p:first-child {
-            margin-top: 4px;
-        }
-        button.close {
-            position: absolute;
-            outline: none;
-            width: 20px;
-            height: 10px;
-            background-color: #ededed;
-            border: 1px solid gray;
-            border-radius: 4px;
-            cursor: pointer;
-            top: 8px;
-            left: 6px;
 
-        }
-        button.close:hover {
-            background-color: rgb(211, 211, 211);
-        }
-        #submissions {
-            text-align: left;
-        }
-        #submissions form {
-            display: flex;
-            flex-flow: column nowrap;
-            gap: 10px;
-        }
-        #submissions form input, #submissions form textarea, #submissions form input[type="url"]::placeholder, #submissions form textarea::placeholder {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 14px;
-            color: #4e5b5b;
-        }
-        #submissions form textarea {
-            resize: vertical;
-            min-height: 50px;
-        }
-        #submissions form input[type="submit"] {
-            color: #000;
-            width: max-content;
-            cursor: pointer;
-        }
-        body.day {
-            background-color: #cbcbcb;
-            /* background-image: url('images/texture.png');
-            background-repeat: repeat; */
-        }
-        body.evening {
-            background-color: #000;
-        }
-        body.evening svg a {
-            fill: rgb(213, 213, 213) !important;
-            text-decoration: none !important;
-            text-decoration-color: #000 !important;
-        }
-        body.silkscreen {
-            background-color: #858585;
-        }
-        body.silkscreen svg a {
-            fill: #fff !important;
-        }
-        body.silkscreen #places {
-            display: none !important;
-        }
-        body svg rect {
-            fill: none !important;
-        }
-        svg a {
-            text-decoration: none;
-        }
+    <!-- for social media -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Diagram Website">
+    <meta name="twitter:description" content="A project by Kristoffer Tjalve and Elliott Cost.">
+    <meta name="twitter:image" content="https://diagram.website/images/social.png">
 
-        @media (max-width: 600px) {
-            #key {
-                flex-flow: row wrap;
-                justify-content: flex-start;
-                width: 100dvw;
-                max-width: 300px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css?v=1.0">
 </head>
 <body class="evening">
     <div id="key">
@@ -246,6 +73,6 @@
         <a href="https://docs.google.com/spreadsheets/d/1DeMrEFqwjswyp9p_7HTKYr7Dba5MLw33d73jC2hL0Lo/edit?usp=sharing">View index</a>
     </div>
         
-    <script src="script.js"></script>     
+    <script src="script.js?v=1.0"></script>     
 </body>
 </html>

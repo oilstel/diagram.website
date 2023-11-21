@@ -91,24 +91,23 @@ document.getElementById('submission-form').addEventListener('submit', function(e
 document.addEventListener('DOMContentLoaded', function() {
     loadSvg('evening');
     document.body.classList.add('evening');
-
-    window.onload = function() {
-        const svgElement = document.querySelector('svg');
-    
-        if (svgElement) {
-            const svgBounds = svgElement.getBoundingClientRect();
-    
-            const verticalScrollPosition = window.pageYOffset + svgBounds.top + (svgBounds.height / 2) - (window.innerHeight / 2);
-            const horizontalScrollPosition = window.pageXOffset + svgBounds.left + (svgBounds.width / 2) - (window.innerWidth / 2);
-    
-            window.scrollTo({
-                top: verticalScrollPosition,
-                left: horizontalScrollPosition,
-                behavior: 'smooth'
-            });
-        }
-    };
 });
+
+// Function to center the SVG on the page
+function centerSvg() {
+    const svgElement = document.querySelector('svg');
+    if (svgElement) {
+        const svgBounds = svgElement.getBoundingClientRect();
+        const verticalScrollPosition = window.pageYOffset + svgBounds.top + (svgBounds.height / 2) - (window.innerHeight / 2);
+        const horizontalScrollPosition = window.pageXOffset + svgBounds.left + (svgBounds.width / 2) - (window.innerWidth / 2);
+
+        window.scrollTo({
+            top: verticalScrollPosition,
+            left: horizontalScrollPosition,
+            behavior: 'smooth'
+        });
+    }
+}
 
 // Function to load SVGs
 function loadSvg(theme) {
@@ -117,6 +116,8 @@ function loadSvg(theme) {
         .then(svgContent => {
             const themeContainer = document.getElementById('diagrams');
             themeContainer.innerHTML = svgContent;
+
+            centerSvg();
         })
         .catch(error => console.error('Error loading SVG:', error));
 }

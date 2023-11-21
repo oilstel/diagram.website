@@ -19,24 +19,6 @@ document.getElementById('toggle-labels').addEventListener('change', function(e) 
     });
 });
 
-
-window.onload = function() {
-    const svgElement = document.querySelector('svg');
-
-    if (svgElement) {
-        const svgBounds = svgElement.getBoundingClientRect();
-
-        const verticalScrollPosition = window.pageYOffset + svgBounds.top + (svgBounds.height / 2) - (window.innerHeight / 2);
-        const horizontalScrollPosition = window.pageXOffset + svgBounds.left + (svgBounds.width / 2) - (window.innerWidth / 2);
-
-        window.scrollTo({
-            top: verticalScrollPosition,
-            left: horizontalScrollPosition,
-            behavior: 'smooth'
-        });
-    }
-};
-
 document.getElementById('randomButton').addEventListener('click', function() {
     const svgLinks = document.querySelectorAll('svg a');
     if (svgLinks.length === 0) return; // Check if there are any links
@@ -103,6 +85,82 @@ document.getElementById('submission-form').addEventListener('submit', function(e
         // Handle error
     });
 });
+
+
+// Load initial SVG (evening) on page load
+document.addEventListener('DOMContentLoaded', function() {
+    loadSvg('evening');
+    document.body.classList.add('evening');
+
+    window.onload = function() {
+        const svgElement = document.querySelector('svg');
+    
+        if (svgElement) {
+            const svgBounds = svgElement.getBoundingClientRect();
+    
+            const verticalScrollPosition = window.pageYOffset + svgBounds.top + (svgBounds.height / 2) - (window.innerHeight / 2);
+            const horizontalScrollPosition = window.pageXOffset + svgBounds.left + (svgBounds.width / 2) - (window.innerWidth / 2);
+    
+            window.scrollTo({
+                top: verticalScrollPosition,
+                left: horizontalScrollPosition,
+                behavior: 'smooth'
+            });
+        }
+    };
+});
+
+// Function to load SVGs
+function loadSvg(theme) {
+    fetch(`images/diagram-${theme}.svg`)
+        .then(response => response.text())
+        .then(svgContent => {
+            const themeContainer = document.getElementById('diagrams');
+            themeContainer.innerHTML = svgContent;
+        })
+        .catch(error => console.error('Error loading SVG:', error));
+}
+
+// Event listener for theme toggle
+document.getElementById('theme-toggle').addEventListener('click', function() {
+    const themes = ['evening', 'day', 'expressive'];
+    const currentTheme = document.getElementById('diagrams').getAttribute('data-current-theme');
+    const currentThemeIndex = themes.indexOf(currentTheme);
+
+    // Determine the next theme
+    const nextThemeIndex = (currentThemeIndex + 1) % themes.length;
+    const nextTheme = themes[nextThemeIndex];
+
+    // Load and display the next theme SVG
+    loadSvg(nextTheme);
+
+    // Update current theme data attribute, body class, and button text
+    document.getElementById('diagrams').setAttribute('data-current-theme', nextTheme);
+    updateBodyClass(nextTheme, themes);
+    updateButtonText(nextTheme);
+});
+
+// Function to update body class
+function updateBodyClass(newTheme, themes) {
+    themes.forEach(theme => document.body.classList.remove(theme));
+    document.body.classList.add(newTheme);
+}
+
+// Function to update button text with current theme
+function updateButtonText(theme) {
+    const themeToggleButton = document.getElementById('theme-toggle');
+    themeToggleButton.textContent = `theme: ${theme}`;
+}
+
+// Load initial SVG (evening) on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const initialTheme = 'evening';
+    loadSvg(initialTheme);
+    document.body.classList.add(initialTheme);
+    updateButtonText(initialTheme); // Set initial button text
+});
+
+
 
 
 

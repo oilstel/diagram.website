@@ -169,6 +169,10 @@ svg a {
     text-decoration: none;
 }
 
+#diagrams, body {
+    opacity: 0;
+}
+
 @media (max-width: 600px) {
     #key {
         flex-flow: row wrap;

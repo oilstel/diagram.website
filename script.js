@@ -116,11 +116,27 @@ document.getElementById('submission-form').addEventListener('submit', function(e
 });
 
 
-// Load initial SVG (evening) on page load
-document.addEventListener('DOMContentLoaded', function() {
-    loadSvg('evening');
-    document.body.classList.add('evening');
-});
+// Function to load SVGs with fade-in effect
+function loadSvg(theme, callback) {
+    fetch(`images/diagram-${theme}.svg`)
+        .then(response => response.text())
+        .then(svgContent => {
+            const themeContainer = document.getElementById('diagrams');
+            themeContainer.innerHTML = svgContent;
+
+            // Apply fade-in effect to SVG
+            themeContainer.style.opacity = 0;
+            themeContainer.style.transition = 'opacity 10s';
+            setTimeout(() => {
+                themeContainer.style.opacity = 1;
+            }, 10);
+
+            if (callback) callback();
+
+            centerSvg();
+        })
+        .catch(error => console.error('Error loading SVG:', error));
+}
 
 // Function to center the SVG on the page
 function centerSvg() {
@@ -133,50 +149,74 @@ function centerSvg() {
         window.scrollTo({
             top: verticalScrollPosition,
             left: horizontalScrollPosition,
-            behavior: 'smooth'
+            behavior: 'auto'
         });
     }
 }
 
-// Function to load SVGs
-function loadSvg(theme) {
-    fetch(`images/diagram-${theme}.svg`)
-        .then(response => response.text())
-        .then(svgContent => {
-            const themeContainer = document.getElementById('diagrams');
-            themeContainer.innerHTML = svgContent;
-
-            centerSvg();
-        })
-        .catch(error => console.error('Error loading SVG:', error));
+// Function to update body class and transition background color
+function updateBodyClass(newTheme, themes) {
+    document.body.style.transition = 'background-color 2s';
+    themes.forEach(theme => document.body.classList.remove(theme));
+    document.body.classList.add(newTheme);
 }
 
-// Event listener for theme toggle
+// Function to update button text with current theme
+function updateButtonText(theme) {
+    const themeToggleButton = document.getElementById('theme-toggle');
+    themeToggleButton.textContent = `${theme}`;
+}
+
+// Event listener for theme toggle with fade-out and fade-in
 document.getElementById('theme-toggle').addEventListener('click', function() {
     const themes = ['evening', 'day', 'silkscreen'];
-    const currentTheme = document.getElementById('diagrams').getAttribute('data-current-theme');
+    const themeContainer = document.getElementById('diagrams');
+    const currentTheme = themeContainer.getAttribute('data-current-theme');
     const currentThemeIndex = themes.indexOf(currentTheme);
 
     // Determine the next theme
     const nextThemeIndex = (currentThemeIndex + 1) % themes.length;
     const nextTheme = themes[nextThemeIndex];
 
-    // Load and display the next theme SVG
-    loadSvg(nextTheme);
+    // Fade out current theme
+    themeContainer.style.transition = 'opacity 1s';
+    themeContainer.style.opacity = 0;
 
-    // Update current theme data attribute, body class, and button text
-    document.getElementById('diagrams').setAttribute('data-current-theme', nextTheme);
-    updateBodyClass(nextTheme, themes);
-    updateButtonText(nextTheme);
+    // Wait for fade-out to complete before loading the next theme
+    setTimeout(() => {
+        // Load and display the next theme SVG with fade-in
+        loadSvg(nextTheme);
 
-    document.getElementById('toggle-labels').checked = true;
+        // Update current theme data attribute, body class, and button text
+        themeContainer.setAttribute('data-current-theme', nextTheme);
+        updateBodyClass(nextTheme, themes);
+        updateButtonText(nextTheme);
+
+        document.getElementById('toggle-labels').checked = true;
+    }, 1000);
 });
 
-// Function to update body class
-function updateBodyClass(newTheme, themes) {
-    themes.forEach(theme => document.body.classList.remove(theme));
-    document.body.classList.add(newTheme);
-}
+// Event listener for DOMContentLoaded to apply fade-in effect on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const initialTheme = 'evening';
+
+    // Apply fade-in effect to body
+    document.body.style.opacity = 0;
+    document.body.style.transition = 'opacity 1s';
+    setTimeout(() => {
+        document.body.style.opacity = 1;
+    }, 10);
+
+    loadSvg(initialTheme);
+    updateBodyClass(initialTheme, ['evening', 'day', 'silkscreen']);
+    updateButtonText(initialTheme);
+});
+
+
+
+
+
+
 
 // Function to update button text with current theme
 function updateButtonText(theme) {

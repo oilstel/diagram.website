@@ -126,10 +126,10 @@ function loadSvg(theme, callback) {
 
             // Apply fade-in effect to SVG
             themeContainer.style.opacity = 0;
-            themeContainer.style.transition = 'opacity 10s';
+            themeContainer.style.transition = 'opacity 5s';
             setTimeout(() => {
                 themeContainer.style.opacity = 1;
-            }, 10);
+            }, 5);
 
             if (callback) callback();
 

@@ -197,20 +197,20 @@ document.getElementById('theme-toggle').addEventListener('click', function() {
 });
 
 // Event listener for DOMContentLoaded to apply fade-in effect on page load
-document.addEventListener('DOMContentLoaded', function() {
-    const initialTheme = 'evening';
+// document.addEventListener('DOMContentLoaded', function() {
+//     const initialTheme = 'evening';
 
-    // Apply fade-in effect to body
-    document.body.style.opacity = 0;
-    document.body.style.transition = 'opacity 1s';
-    setTimeout(() => {
-        document.body.style.opacity = 1;
-    }, 10);
+//     // Apply fade-in effect to body
+//     document.body.style.opacity = 0;
+//     document.body.style.transition = 'opacity 1s';
+//     setTimeout(() => {
+//         document.body.style.opacity = 1;
+//     }, 10);
 
-    loadSvg(initialTheme);
-    updateBodyClass(initialTheme, ['evening', 'day', 'silkscreen']);
-    updateButtonText(initialTheme);
-});
+//     loadSvg(initialTheme);
+//     updateBodyClass(initialTheme, ['evening', 'day', 'silkscreen']);
+//     updateButtonText(initialTheme);
+// });
 
 
 

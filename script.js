@@ -85,6 +85,22 @@ document.addEventListener('DOMContentLoaded', function() {
         var event = new Event('change');
         checkbox.dispatchEvent(event);
     });
+
+    let roadmap = document.getElementById('roadmap');
+
+    document.getElementById('roadmap-toggle').addEventListener('click', function() {
+        if (isElementVisible(roadmap)) {
+            roadmap.style.display = 'none';
+        } else {
+            roadmap.style.display = 'block';
+        }
+        submissions.style.display = 'none';
+        info.style.display = 'none';
+    });
+
+    document.getElementById('close-roadmap').addEventListener('click', function() {
+        document.getElementById('roadmap').style.display = 'none';
+    });
     
 });
 

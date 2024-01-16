@@ -169,6 +169,16 @@ svg a {
     text-decoration: none;
 }
 
+button#roadmap-toggle {
+    background-color: yellow;
+}
+button#roadmap-toggle:hover {
+    background-color: rgb(232, 232, 1);
+}
+#roadmap .modal {
+    text-align: left;
+}
+
 /* #diagrams, body {
     opacity: 0;
 } */
